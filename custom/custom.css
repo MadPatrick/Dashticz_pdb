@@ -1,0 +1,566 @@
+/* ========================================================================== */
+/* 01. FONT                                                                   */
+/* ========================================================================== */
+@font-face {
+  font-family: 'floydian';
+  src: url('img/font/floyd.ttf');
+}
+
+/* ========================================================================== */
+/* 02. TOPBAR                                                                 */
+/* ========================================================================== */
+/* [REMOVED] Empty .transbg.dark.col-xs-* ruleset had no declarations        */
+
+/* ========================================================================== */
+/* 03. BLOCKS                                                                 */
+/* ========================================================================== */
+
+.transbg {
+    background-color: rgba(77,77,222,0.2) !important;
+    padding-top: 8px !important;
+    padding-bottom: 6px !important;
+    border: 2px solid rgba(255,255,255,0) !important;
+    border-radius: 1px !important;
+}
+
+/* ========================================================================== */
+/* 04. ON MOUSE-OVER                                                          */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/* 05. MH LAYOUT / BUTTONS                                                    */
+/* ========================================================================== */
+.mh 				{ height: 115px !important;text-align: right !important;--col1width: 60px;--col2width: 60px;}
+.right2col          		{ padding-right: calc(var(--col1width) + var(--col2width) + 8px); }
+.col-button2        		{ width: calc(var(--col1width) + var(--col2width)); }
+.col-button2 .btn-number 	{ width: var(--col1width); }
+
+.btn.stop 			{ width: var(--col2width);font-size: 20px;display: flex;justify-content: center;align-items: center;}
+
+.mh .btn        		{ 
+	background-color: rgba(33,105,172,0.1); 
+	border: 1px solid rgba(255,255,255,0.7); 
+	color: grey;   
+	box-shadow: inset 3px 3px 5px 0px rgba(255,255,255,0.3) !important;
+	border-radius: 10px !important;  
+	color: grey !important;  }
+.mh .btn.stop   		{ color: white !important; background-color: rgba(255, 0, 0, 0.6) }
+.mh .btn.active 		{ color: white !important; background-color: rgba(33,105,172,0.7) }
+/* ========================================================================== */
+/* 06. COLUMN TITLES / TYPOGRAPHY                                             */
+/* ========================================================================== */
+.blocktitle         		{ height: 40px !important; background-color: rgba(130,130,130,0.2) !important; display: flex !important; justify-content: center !important; align-items: center !important; }
+.blocktitle .dt_title   	{ font-size: 24px; color: rgba(255,255,255,1); text-shadow: 4px 4px 4px #000000; padding-top: 4px !important; }
+.blocktitle img         	{ max-width: 34px !important; padding-bottom: 10px !important; }
+.miniclock 			{
+	font-size:        24px !important;
+	font-weight:      bold !important;
+	color:            rgba(255,255,255,1) !important;
+	text-shadow:      4px 4px 4px #000000 !important;
+	border:           2px solid rgba(0,0,0,0.2) !important;
+	padding-top:      4px !important;
+	height:           40px !important;
+	background-color: rgba(130,130,130,0.2) !important;
+	text-align:       right !important;
+	}
+
+/* ========================================================================== */
+/* 07. SWIPER / LONGPRESS                                                     */
+/* ========================================================================== */
+.swiper-pagination-bullet   { display: none !important; }
+.transbg.longpress::after   { border-right: none !important; position: absolute; }
+
+/* ========================================================================== */
+/* 08. DEFAULT BLOCK STYLES                                                   */
+/* ========================================================================== */
+.title  { font-size: 18px !important; color: lightyellow !important; }
+.state  { font-size: 18px !important; color: lightgreen !important; }
+.value  { font-size: 18px !important; color: lightgreen !important;}
+.icon   { font-size: 40px !important; }
+img     { max-width: 65px !important; }
+
+/* ========================================================================== */
+/* 09. ICON SIZES (MH)                                                        */
+/* ========================================================================== */
+.mh .fas, .mh .far, .mh .wi    { font-size: 28px !important; }
+
+/* ========================================================================== */
+/* 11. GENERAL TOP BUTTONS                                                    */
+/* NOTE: s1/s2 are shortcut aliases for gr_tuin/gr_kamer in CONFIG.js        */
+/* ========================================================================== */
+.block_s1, .block_s2,
+.block_ventilatie,
+.block_dimmer_hal,
+[data-id='Slide_1'],
+[data-id='Slide_2']             { height: 130px !important; }
+
+.block_s1 .title,
+.block_s2 .title,                
+.block_ventilatie .title,
+.block_dimmer_hal .title        { font-size: 18px !important; color: lightyellow !important; position: absolute; top: 100px; left: calc(50% - 10px); transform: translate(-50%, -50%); }
+
+[data-id='Slide_1'] .dt_title,
+[data-id='Slide_2'] .dt_title   { font-size: 18px !important; color: lightyellow !important; position: absolute; top: 70%; left: 30% !important; }
+
+[data-id='Slide_1'] img,
+[data-id='Slide_2'] img   	{ opacity: 0.4 !important;}
+
+.block_s1 .col-data,
+.block_s2 .col-data,
+.block_ventilatie .col-data,
+.block_dimmer_hal .col-data,
+[data-id='Slide_1'] .col-data,
+[data-id='Slide_2'] .col-data   { width: calc(100% - 50px) !important; }
+
+/* ========================================================================== */
+/* 12. HOME BUTTON                                                            */
+/* ========================================================================== */
+.button[data-id='Home'] {
+  position: fixed;
+  bottom: 5px; left: 1px;
+  width: calc(100% - 10px) !important; height: 50px !important;
+  background-color: rgba(84,84,84,0.9) !important;
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 8px;
+  box-shadow: inset 3px 3px 5px 0px rgba(255,255,255,0.3) !important;
+}
+
+.button[data-id='Home'] .dt_title {
+  font-size: 30px !important;
+  font-weight: bold;
+  color: #f4ffcc !important;
+  text-shadow: 0 0 4px rgba(255,255,255,0.5);
+  margin: 0;
+  position: absolute;
+  top: 55%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button[data-id='Home'] .col-icon {
+  font-size: 40px !important;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00, #00ff99, #00ffff);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: iconFlow 6s linear infinite, iconGlow 2s ease-in-out infinite alternate;
+  margin: 0;
+  position: absolute;
+  top: 50%; left: calc(50% - 140px);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes iconFlow {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+@keyframes iconGlow {
+  0%   { filter: drop-shadow(0 0 4px rgba(0,255,255,0.4)); }
+  50%  { filter: drop-shadow(0 0 12px rgba(255,0,255,0.7)); }
+  100% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.4)); }
+}
+
+/* ========================================================================== */
+/* 13. GARBAGE                                                                */
+/* ========================================================================== */
+[data-id='mygarbage']                       	{ height: 130px !important; background-color: rgba(77,77,222,0.2) !important; border: 3px solid rgba(255,255,255,0) !important; border-radius: 1px !important; }
+[data-id='mygarbage'].garbage .trashdate,
+[data-id='mygarbage'].garbage .trashtype	{ width: 50% !important; }
+[data-id='mygarbage'].garbage .trashtoday,
+[data-id='mygarbage'].garbage .trashtomorrow 	{ font-size: 18px; font-weight: bold !important; color: yellow !important; text-align: right !important; }
+[data-id='mygarbage'].garbage .trashrow    	{ font-size: 18px; font-weight: normal !important; color: white !important; text-align: right !important; opacity: 0.7 !important; }
+[data-id='mygarbage'].garbage img          	{ max-width: 65px !important; display: inline-block; position: relative; top: -10px !important; }
+
+/* ========================================================================== */
+/* 14. BATTERY                                                                */
+/* ========================================================================== */
+.battery-level                              	{ margin-right: 10px !important; }
+.battery-level.fa-battery-empty,
+.battery-level.fa-battery-quarter          	{ color: red; z-index: 15; font-size: 20px !important; }
+.battery-level.fa-battery-half,
+.battery-level.fa-battery-three-quarters   	{ color: grey; z-index: 15; font-size: 20px !important; }
+.battery-level.fa-battery-full             	{ color: green; z-index: 15; font-size: 20px !important; }
+.battery-percentage                         	{ color: white; }
+
+/* ========================================================================== */
+/* 15. DIMMER SLIDERS (HIDE)                                                  */
+/* ========================================================================== */
+.block_dimmer_hal .ui-slider-handle,
+.block_dimmer_hal .ui-slider-horizontal,
+.block_Wnk_Wandspot .ui-slider-handle,
+.block_Wnk_Wandspot .ui-slider-horizontal { display: none; }
+
+/* ========================================================================== */
+/* 16. SCREENS — TITLES / ICONS / WIDTH                                       */
+/* ========================================================================== */
+.block_Wnk_groot .col-data,
+.block_Slaapkamer .col-data,
+.block_Erker_Deur .col-data,
+.block_Erker_3 .col-data,
+.block_Erker_1 .col-data,
+.block_Thomas_1 .col-data,
+.block_Erker_4 .col-data,
+.block_Erker_2 .col-data,
+.block_Erker_5 .col-data,
+.block_Wnk_klein .col-data,
+.block_Thomas_2 .col-data                  { width: calc(100% - 100px) !important; }
+
+.block_Wnk_groot .title,
+.block_Slaapkamer .title,
+.block_Erker_Deur .title,
+.block_Erker_3 .title,
+.block_Erker_1 .title,
+.block_Thomas_1 .title,
+.block_Erker_4 .title,
+.block_Erker_2 .title,
+.block_Erker_5 .title,
+.block_Wnk_klein .title,
+.block_Thomas_2 .title                     { font-size: 24px !important; color: white !important; }
+
+.block_Wnk_groot img,
+.block_Slaapkamer img,
+.block_Erker_Deur img,
+.block_Erker_3 img,
+.block_Erker_1 img,
+.block_Thomas_1 img,
+.block_Erker_4 img,
+.block_Erker_2 img,
+.block_Erker_5 img,
+.block_Wnk_klein img,
+.block_Thomas_2 img                        { max-width: 30px !important; }
+
+/* ========================================================================== */
+/* 17. SCREEN BLOCK BUTTONS / SLIDERS                                         */
+/* ========================================================================== */
+.fas.fa-chevron-up,
+.fas.fa-chevron-down                       { font-size: 40px !important; color: yellow !important; }
+
+.ui-slider-horizontal {
+  background-color: #6a6a6a !important;
+  border: 1px solid #ffffff !important;
+  height: 10px !important;
+  border-radius: 5px !important;
+  position: relative;
+  margin-top: 20px !important;  /* helft van handle hoogte */
+}
+
+.ui-slider-handle {
+  background-color: #00aaff !important;
+  border: 2px solid white !important;
+  border-radius: 14px !important;
+  height: 40px !important;
+  width: 20px !important;
+  box-shadow: inset 3px 3px 5px rgba(255,255,255,0.5);
+  top: 50% !important;
+  margin-top: -20px !important;  /* helft van handle hoogte */
+}
+/* ========================================================================== */
+/* 17b. SOMFY BLOKKEN                                                         */
+/* ========================================================================== */
+.block_Somfy_woonkamer,
+.block_Somfy_blok1,
+.block_Somfy_blok2                         { height: 120px !important; }
+
+.block_Somfy_woonkamer .col-data,
+.block_Somfy_blok1 .col-data,
+.block_Somfy_blok2 .col-data               { text-align: center !important; width: 100% !important; }
+
+.block_Somfy_woonkamer .title,
+.block_Somfy_blok1 .title,
+.block_Somfy_blok2 .title                  { font-size: 18px !important; color: lightyellow !important; text-align: center !important; width: 100% !important; }
+
+.block_Somfy_woonkamer .btn,
+.block_Somfy_blok1 .btn,
+.block_Somfy_blok2 .btn                    {
+	font-size: 26px !important;
+	width: 110px !important; 
+	margin-right: 5px !important;
+	margin-top: 10px !important;
+	}
+
+.block_Somfy_woonkamer .icon,
+.block_Somfy_blok1 .icon,
+.block_Somfy_blok2 .icon                   { display: none !important; }
+
+/* ========================================================================== */
+/* 18. LIGHT SWITCHES / DIVERSE                                               */
+/* ========================================================================== */
+
+.block_Mower_run .icon   		{ margin-left: 50% !important; }
+.block_Mower_run .off.icon   	{ opacity: 0.2 !important; }
+.block_Mower_select .off.icon      	{ opacity: 0.8 !important; }
+
+.block_Mower_select .col-data,
+.block_lms_play .col-data 		{text-align: center !important; }
+
+.block_Mower_select .col-data select,
+.block_lms_playlist .col-data select,
+.block_lms_favorite .col-data select {
+	height: 40px !important;
+	margin-top: 10px !important;
+	margin-left: -10% !important;
+	width: 105% !important;
+	max-width: 105% !important;
+	font-size: 20px;
+	color: lightgrey !important;
+	background-color: rgba(33, 105, 172, 0.4);
+	border: 1px solid lightgrey !important;
+	border-radius: 10px !important;
+	box-shadow: inset 3px 3px 5px 0px rgba(255, 255, 255, 0.3) !important;
+	text-align: center !important
+	}
+
+.fas.fa-plus.fa-small.fa-thermostat,
+.fas.fa-minus.fa-small.fa-thermostat       { color: yellow !important; font-size: 15px !important; }
+
+.block_Mower_select label:has(input[value="0"]),
+.block_Mower_select label:has(input[value="20"]),
+.block_Mower_select label:has(input[value="30"]),
+.block_Mower_select label:has(input[value="40"])	{ display: none !important; }
+
+.block_Badkamer .btn                       	{
+	height: 40px !important; 
+	width:  65px !important; 
+	line-height: 30px !important; 
+	margin-left: -10px ; 
+	margin-top: 10px !important;
+	}
+
+.block_lms_play .btn				{
+	height: 40px !important; 
+	width: 100px !important; 
+	line-height: 30px !important;
+	font-size: 20px !important; 
+	margin-top: 10px !important;
+	margin-right: 5px !important; 
+	}
+
+.block_Mower_select select option:first-child,
+.block_lms_playlist select option:first-child,
+.block_lms_favorite select option:first-child   { display: none !important; }
+
+.block_lms_play label:has(input[value="10"]),
+.block_lms_play label:has(input[value="30"])   	{ display: none !important; }
+.block_lms_play img {width: 45px}
+
+/* ========================================================================== */
+/* 19. STANDBY SCREEN                                                         */
+/* ========================================================================== */
+.screenstandby,
+.standby .block,
+.standby [data-id] 				{background-color: black !important;color: white !important;}
+.standby .transbg 				{background-color: black !important;}
+
+/* 19.1 Mini */
+.standby .block_mini                       	{ height: 160px !important; text-align: left !important; }
+.standby .block_mini .title                	{ display: none !important; }
+.standby .block_mini .value                	{ font-size: 22px !important; display: inline-block; position: relative; top: -15px; margin-left: 50px; }
+.standby .block_mini img:first-of-type     	{ width: 70px; position: relative; top: 0; }
+.standby .block_mini .value img            	{ width: 28px; height: auto; margin: 0; position: relative; top: 0; }
+
+/* 19.2 Garbage standby */
+.standby [data-id='mygarbage_standby'].garbage .trashrow        { display: none; }
+.standby [data-id='mygarbage_standby']                          { height: 160px !important;display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center !important; padding-top: 5px !important; }
+.standby [data-id='mygarbage_standby'] .trashtoday,
+.standby [data-id='mygarbage_standby'] .trashtomorrow           { display: flex; align-items: center; justify-content: center; gap: 8px; color: white !important; font-size: 22px !important; font-weight: bold; }
+.standby [data-id='mygarbage_standby'] .trashtoday::before,
+.standby [data-id='mygarbage_standby'] .trashtomorrow::before   { content: ''; display: inline-block; width: 40px; height: 40px; background-image: url('https://pdebrabander.nl/images/kliko_green.png'); background-size: contain; background-repeat: no-repeat; }
+
+/* 19.3 BMW */
+.standby .block_bmw                        { height: 160px !important; position: relative; }
+.standby .block_bmw .title                 { display: none; }
+.standby .block_bmw .value                 { font-size: 22px !important; display: inline-block; position: relative; top: -15px; left: 15px !important; }
+.standby .block_bmw img:first-of-type      { margin-left: 190px; width: 38px; position: relative; top: 0; }
+.standby .block_bmw .value img             { width: 28px; height: auto; margin: 0; position: relative; top: 0; }
+
+/* 19.4–19.6 Empty blocks */
+.standby .block_emptyblock4,
+.standby .block_emptyblock5,
+.standby .block_emptyblock6               	{ height: 90px !important; }
+
+.standby .block_emptyblock4 .title,
+.standby .block_emptyblock4 .value,
+.standby .block_emptyblock6 .title,
+.standby .block_emptyblock6 .value,
+.standby .block_emptyblock5 .title        	{ display: none !important; }
+.standby .block_emptyblock5 .value		{ font-size: 24px !important;display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;}
+
+/* 19.7 Clock */
+.standby [data-id='myclock']                                    { height: 200px !important;}
+.standby [data-id='myclock'] .clock-day:before                  { color: rgba(90,90,90,1) !important; font-family: arial; text-shadow: 4px 3px 3px #8c8c64 !important; font-weight: bold !important; }
+.standby [data-id='myclock'] .clock-hours:before,
+.standby [data-id='myclock'] .clock-minutes:before              { color: rgba(242,242,242,1) !important; font-family: arial; text-shadow: 2px 2px 2px #b1b3a1 !important; }
+.standby [data-id='myclock'] .clock-seconds:before              { color: rgba(90,90,90,1) !important; font-family: arial; text-shadow: 2px 2px 2px #8c8c64 !important; }
+.standby [data-id='myclock'] .clock-label                       { color: rgba(180,180,0,1) !important; font-weight: bold; font-family: "floydian"; }
+
+/* 19.8 Regen */
+.standby .block_regen                      { height: 160px !important; font-family: Arial !important; display: flex; align-items: center; text-align: right !important;}
+.standby .block_regen .title               { font-size: 30px !important; color: #f4ffcc !important; }
+.standby .block_regen .value,
+.standby .block_regen img                  { display: none; }
+
+/* 19.9 Weather */
+.standby [data-id='weather_standby']       { height: 160px !important; padding-left: 50px !important; }
+.standby [data-id='weather_standby'] .icon { font-size: 24pt !important; padding-left: 20px !important; }
+.standby [data-id='weather_standby'] .temp { font-family: Arial !important; font-weight: bold; font-size: 36pt !important; color: #f4ffcc; padding-top: 10px !important; }
+
+/* 19.10 Deursensoren */
+.standby .block_deursensor                 { height: 200px !important; text-align: left !important; padding-left: 50px !important;}
+.standby .block_deursensor .title          { display: none !important; }
+.standby .block_deursensor .value          { 
+	color: white !important; 
+	display: flex !important; 
+	flex-direction: column !important; 
+	justify-content: 
+	flex-end !important; 
+	font-size: 22px !important; 
+	overflow: hidden; 
+	height: 150px !important; 
+	text-align: left !important; 
+	margin-left: -80px; 
+	}
+.standby .block_deursensor img             	{ position: relative; top: -3px; }
+.standby .block_deursensor .value .doorcontainer { display: flex; flex-direction: column-reverse; }
+
+/* 19.11 Husqvarna */
+.standby .block_Mower_State 			{
+    height: 200px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding-bottom: 20px !important;
+}
+.standby .block_Mower_State .title 		{ display: none !important; }
+.standby .block_Mower_State .col-icon 		{
+    display: flex !important;
+    align-items: center !important;
+    width: auto !important;
+    flex: none !important;
+}
+.standby .block_Mower_State .col-icon img 	{
+    position: static !important;
+    width: 50px !important;
+    display: block !important;
+}
+.standby .block_Mower_State .col-data 		{
+    display: flex !important;
+    align-items: center !important;
+    width: auto !important;
+    flex: none !important;
+    margin-left: 10px !important;
+    padding: 0 !important;
+}
+.standby .block_Mower_State .value 		{
+    color: white !important;
+    font-size: 22px !important;
+    text-align: left !important;
+}
+
+/* 19.12 LMS standby */
+.standby .block_lms_standby                {
+    height: 200px !important;
+    display: flex;
+    align-items: flex-end !important;
+    justify-content: flex-end;
+    padding-right: 20px !important;
+    padding-bottom: 20px !important;
+    }
+.standby .block_lms_standby .value         {font-size: 22px !important;color: yellow !important; display: inline-block;text-align: left !important;line-height: 1.5;width: auto;}
+.standby .block_lms_standby .title,
+.standby .block_lms_standby img            { display: none !important; }
+
+/* ========================================================================== */
+/* 20. WARNING BLOCKS / MESSAGES                                              */
+/* ========================================================================== */
+.message_block {
+	visibility: visible;
+	background: rgba(0,255,0,0.2) !important;
+	background-clip: border-box;
+	border: 3px solid rgba(0,0,0,0.7) !important;
+	border-radius: 1px !important;
+	}
+
+.warning_block {
+	visibility: visible;
+	background: rgba(255,0,0,0.6) !important;
+	background-clip: border-box;
+	border: 1px solid white !important;
+	border-radius: 15px !important;
+	z-index: 15;
+	}
+
+/* 20.1 Ketel */
+.warning_ketel { visibility: visible; }
+.warning_ketel:before {
+	content: "Ketel Alarm";
+	background: rgba(255,0,0,0.6) !important; 
+	background-clip: border-box;
+	border: 3px solid white !important; 
+	border-radius: 15px !important; 
+	font-size: 20px !important;
+	visibility: visible; 
+	position: fixed; top: 40px; 
+	left: 50%; transform: translateX(-50%);
+	width: 200px; 
+	padding: 10px; 
+	text-align: center; 
+	z-index: 9999; 
+	animation: colorchange 5s infinite alternate;
+	}
+
+/* 20.3 Party */
+.message_party { visibility: visible; }
+.message_party:before {
+	content: "Party Mode";
+	background: rgba(0,255,0,0.1) !important; background-clip: border-box;
+	border: 3px solid white !important; border-radius: 15px !important; font-size: 20px !important; font-weight: bold;
+	visibility: visible; 
+	position: fixed; 
+	top: 140px; 
+	left: 50%; 
+	transform: translateX(-50%);
+	width: 200px; 
+	padding: 10px; 
+	text-align: center; 
+	z-index: 9999; animation: 
+	colorchange 5s infinite alternate;
+}
+
+/* 20.4 Mower actief */
+.warning_mower { visibility: visible; }
+.warning_mower:before {
+	content: "Grasmaaier is actief";
+	background: rgba(0,0,0,0.6) !important; 
+	background-clip: border-box;
+	border: 3px solid green !important; 
+	border-radius: 15px !important; 
+	font-size: 20px !important;
+	visibility: visible; 
+	position: fixed; 
+	top: 600px; 
+	left: 50%; 
+	transform: translateX(-50%);
+	width: 300px; 
+	padding: 10px; 
+	text-align: center; 
+	z-index: 9999;
+	}
+
+/* ========================================================================== */
+/* 21. ANIMATIONS                                                             */
+/* ========================================================================== */
+@keyframes movement {
+  0%   { right: 15px;  top: 15px; }
+  25%  { right: 200px; top: 15px; }
+  50%  { right: 200px; top: 40px; }
+  75%  { right: 15px;  top: 40px; }
+  100% { right: 15px;  top: 15px; }
+}
+
+@keyframes colorchange {
+  0%   { color: white; }
+  25%  { color: yellow; }
+  50%  { color: pink; }
+  75%  { color: green; }
+  100% { color: yellow; }
+}

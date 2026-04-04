@@ -1,0 +1,53 @@
+/* ========================================================================== */
+/* CUSTOM.JS voor Dashticz                                                    */
+/* ========================================================================== */
+function afterGetDevices() {
+  // Code die na elke Domoticz update wordt uitgevoerd (optioneel)
+}
+/* ========================================================================== */
+/* 01. TRIGGER VARIABELEN                                                     */
+/* ========================================================================== */
+var trigger_Ketel_druk    = false;
+var trigger_Party_Mode    = false;
+/* ========================================================================== */
+/* 02. BLOCK-ID ? DASHTICZ-ID MAPPING                                         */
+/* ----------------------------------------------------------------------------
+   emptyblock6           ? Keteldruk
+   emptyblock4           ? Party Mode
+   blocks['Mower_State'] ? Husqvarna State + Next Schedule (idx 923 + 1494)
+   ----------------------------------------------------------------------------
+   Deze mapping is puur informatief voor leesbaarheid en onderhoud.
+   De echte koppeling vindt plaats in de handleBlock_ functies hieronder.
+/* ========================================================================== */
+
+/* ========================================================================== */
+/* 03. GENERIEKE FUNCTIE VOOR BLOCKS                                          */
+/* ========================================================================== */
+function updateBlock(trigger, blockName, className) {
+  Dashticz.setBlock(blockName, {
+    addClass: trigger ? className : '',
+  });
+}
+
+/* ========================================================================== */
+/* 04. KETELDRUK  (emptyblock6)                                               */
+/* ========================================================================== */
+function handleBlock_1() {
+  updateBlock(trigger_Ketel_druk, 'emptyblock6', 'warning_ketel');
+}
+function getStatus_Ketel_druk(block) {
+  const value = parseFloat(block.device.Data);
+  trigger_Ketel_druk = value < 1.6;       // Triggert als druk lager is dan 1.6 bar
+  handleBlock_1();
+}
+
+/* ========================================================================== */
+/* 05. PARTY MODE (emptyblock4)                                               */
+/* ========================================================================== */
+function handleBlock_2() {
+  updateBlock(trigger_Party_Mode, 'emptyblock4', 'message_party');
+}
+function getStatus_Party_Mode(block) {
+  trigger_Party_Mode = block.device.Status === 'On';
+  handleBlock_2();
+}

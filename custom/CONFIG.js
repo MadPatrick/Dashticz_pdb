@@ -2,6 +2,7 @@ var config = {}
 config['domoticz_ip'] = 'http://192.168.1.5:8080';
 config['theme'] = 'default';
 config['login_timeout'] = '720';
+config['editmode'] = 1
 config['loginEnabled'] = 'false';
 config['client_id'] = 'Dashticz';
 config['client_secret'] = 'DashticzPassword';
@@ -67,7 +68,7 @@ config['batteryThreshold'] = 30;
 // --------------------------------------------------------------------------------------------
 config['garbage_mapping'] = {
     rest: ['grof', 'grey', 'rest', 'grijs','grijze'],
-    gft: ['gft', 'tuin', 'refuse bin', 'green', 'groen', 'Biodégradables', 'snoei'],
+    gft: ['gft', 'tuin', 'refuse bin', 'green', 'groen', 'Biod gradables', 'snoei'],
     pmd: ['plastic', 'pmd', 'verpakking', 'kunststof', 'valorlux'],
     papier: ['papier', 'blauw', 'blue', 'recycling bin collection'],
     kca: ['chemisch', 'kca','kga'],

@@ -1,0 +1,212 @@
+/*
+ * Dashticz Edit Mode — Stylesheet
+ * Bestand: css/editmode.css
+ *
+ * Stijlen voor de drag-and-drop Edit Mode interface.
+ * Wordt automatisch geladen via install-editmode.sh
+ */
+
+/* ── Edit mode toolbar ───────────────────────────────────────── */
+#dz-edit-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9990;
+  background: #1a1a2e;
+  border-bottom: 2px solid #4a9eff;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,.5);
+  font-family: inherit;
+}
+
+.dz-tb-label {
+  font-size: 12px;
+  color: #aab;
+  margin-right: 4px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.dz-tb-btn {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.07);
+  color: #dde;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  white-space: nowrap;
+}
+
+.dz-tb-btn:hover {
+  background: rgba(74,158,255,.25);
+  border-color: #4a9eff;
+  color: #fff;
+}
+
+.dz-tb-save {
+  margin-left: auto;
+  background: #1d6fa4;
+  border-color: #4a9eff;
+  color: #fff;
+  font-weight: 600;
+}
+
+.dz-tb-save:hover {
+  background: #2483c4;
+}
+
+/* ── Edit mode activeer-knop (in topbar) ─────────────────────── */
+.dz-editmode-btn {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: #dde;
+  cursor: pointer;
+  transition: background .15s;
+  margin-left: 10px;
+}
+
+.dz-editmode-btn:hover,
+.dz-editmode-btn.active {
+  background: #c0392b;
+  border-color: #e74c3c;
+  color: #fff;
+}
+
+/* ── Blokken in edit mode ────────────────────────────────────── */
+.dz-editable {
+  position: relative !important;
+  cursor: move !important;
+  outline: 2px dashed rgba(74,158,255,.7) !important;
+  outline-offset: 2px;
+  transition: outline-color .15s;
+  user-select: none;
+}
+
+.dz-editable:hover {
+  outline-color: #4a9eff !important;
+  box-shadow: 0 0 0 4px rgba(74,158,255,.15);
+}
+
+.dz-dragging {
+  opacity: .45 !important;
+  transform: scale(.97);
+}
+
+.dz-drag-over {
+  outline: 2px solid #4a9eff !important;
+  background: rgba(74,158,255,.08) !important;
+}
+
+/* ── Resize handle ───────────────────────────────────────────── */
+.dz-resize-handle {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  background: rgba(74,158,255,.85);
+  border-radius: 4px;
+  cursor: se-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: #fff;
+  font-size: 11px;
+  transition: background .15s;
+}
+
+.dz-resize-handle:hover {
+  background: #4a9eff;
+}
+
+/* ── Verwijder-knop ──────────────────────────────────────────── */
+.dz-block-delete {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: rgba(192,57,43,.85);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: #fff;
+  font-size: 10px;
+  transition: background .15s;
+}
+
+.dz-block-delete:hover {
+  background: #e74c3c;
+}
+
+/* Verberg handles als edit mode NIET actief is */
+.dz-resize-handle,
+.dz-block-delete {
+  display: none;
+}
+
+/* ── Statusbar ───────────────────────────────────────────────── */
+#dz-statusbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9980;
+  background: rgba(26,26,46,.92);
+  color: #aab;
+  font-size: 12px;
+  padding: 5px 16px;
+  text-align: center;
+  border-top: 1px solid rgba(74,158,255,.3);
+  display: none;
+}
+
+/* ── Toast notificatie ───────────────────────────────────────── */
+.dz-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #1d6fa4;
+  color: #fff;
+  font-size: 13px;
+  padding: 9px 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.dz-toast.dz-toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Fallback bar als er geen topbar is ──────────────────────── */
+#dz-editmode-bar {
+  position: fixed;
+  top: 8px;
+  right: 12px;
+  z-index: 9991;
+}
+
+/* ── Body padding compensatie voor toolbar ───────────────────── */
+body.dz-editmode-active {
+  padding-top: 48px !important;
+}

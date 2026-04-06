@@ -26,6 +26,8 @@ var Domoticz = (function () {
   var firstUpdate = true;
   var refreshTimeout;
   var refreshInProgress = false;
+  var MAX_RECONNECT_ATTEMPTS = 10; //Reload the page after this many failed WebSocket reconnects
+  var MIN_WS_POLL_INTERVAL_MS = 30000; //Minimum polling interval (ms) when WebSocket is active
   var info = {
     build: 0,
     version: 0,
@@ -384,7 +386,7 @@ var Domoticz = (function () {
       .then(function () {
         // When WebSocket is active, poll less frequently (30s) since WS provides real-time updates.
         // When using HTTP polling only, use the configured domoticz_refresh interval.
-        var pollInterval = useWS ? Math.max(cfg.domoticz_refresh * 1000, 30000) : cfg.domoticz_refresh * 1000;
+        var pollInterval = useWS ? Math.max(cfg.domoticz_refresh * 1000, MIN_WS_POLL_INTERVAL_MS) : cfg.domoticz_refresh * 1000;
         setInterval(function () {
           refreshAll();
         }, pollInterval);
@@ -404,7 +406,10 @@ var Domoticz = (function () {
   }
 
   function refreshAll() {
-    if (refreshInProgress) return $.Deferred().resolve();
+    if (refreshInProgress) {
+      Debug.log('refreshAll: skipped, previous refresh still in progress');
+      return $.Deferred().resolve();
+    }
     refreshInProgress = true;
     var p;
     if (cfg.refresh_method || !useWS) {
@@ -578,7 +583,7 @@ var Domoticz = (function () {
   }
 
   function reconnect() {
-    var maxReconnectAttempts = 10;
+    var maxReconnectAttempts = MAX_RECONNECT_ATTEMPTS;
     reconnectCount++;
     console.log('reconnecting (attempt ' + reconnectCount + ')');
     Debug.log('reconnecting in ' + reconnectTimeout + ' (attempt ' + reconnectCount + ')');

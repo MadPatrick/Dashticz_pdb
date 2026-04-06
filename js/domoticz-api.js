@@ -19,11 +19,13 @@ var Domoticz = (function () {
   var lastUpdate = {};
   var requestid = 0;
   var callbackList = [];
-  var reconnectTimeout = 2; //Initial value: 1 sec reconnect timeout
+  var reconnectTimeout = 2; //Initial value: 2 sec reconnect timeout
+  var reconnectCount = 0; //Number of reconnect attempts
   var reconnecting = false;
   var securityRefresh = null;
   var firstUpdate = true;
   var refreshTimeout;
+  var refreshInProgress = false;
   var info = {
     build: 0,
     version: 0,
@@ -380,9 +382,12 @@ var Domoticz = (function () {
         );
       })
       .then(function () {
+        // When WebSocket is active, poll less frequently (30s) since WS provides real-time updates.
+        // When using HTTP polling only, use the configured domoticz_refresh interval.
+        var pollInterval = useWS ? Math.max(cfg.domoticz_refresh * 1000, 30000) : cfg.domoticz_refresh * 1000;
         setInterval(function () {
           refreshAll();
-        }, cfg.domoticz_refresh * 1000);
+        }, pollInterval);
         return refreshAll();
       })
       .then(requestSecurityStatus)
@@ -399,13 +404,19 @@ var Domoticz = (function () {
   }
 
   function refreshAll() {
+    if (refreshInProgress) return $.Deferred().resolve();
+    refreshInProgress = true;
+    var p;
     if (cfg.refresh_method || !useWS) {
-      return requestAllVariables().then(function () {
+      p = requestAllVariables().then(function () {
         return requestAllDevices();
       });
     } else {
-      return requestAllVariables().then(requestAllScenes);
+      p = requestAllVariables().then(requestAllScenes);
     }
+    return p.always(function () {
+      refreshInProgress = false;
+    });
   }
 
   function connectWebsocket() {
@@ -443,6 +454,7 @@ var Domoticz = (function () {
                             console.log('initial connect data: ', res);
                         });*/
       reconnectTimeout = 2;
+      reconnectCount = 0;
       lastUpdate = {};
       if (
         lastRequest &&
@@ -566,8 +578,16 @@ var Domoticz = (function () {
   }
 
   function reconnect() {
-    console.log('reconnecting');
-    Debug.log('reconnecting in ' + reconnectTimeout);
+    var maxReconnectAttempts = 10;
+    reconnectCount++;
+    console.log('reconnecting (attempt ' + reconnectCount + ')');
+    Debug.log('reconnecting in ' + reconnectTimeout + ' (attempt ' + reconnectCount + ')');
+    if (reconnectCount > maxReconnectAttempts) {
+      console.error('Max reconnect attempts reached. Reloading page.');
+      Debug.log('Max reconnect attempts reached. Reloading page.');
+      window.location.reload();
+      return;
+    }
     setTimeout(function () {
       Debug.log('trying to reconnect now');
       reconnecting = false;
